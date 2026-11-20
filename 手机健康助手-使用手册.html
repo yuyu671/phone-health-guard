@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>手机健康助手 · 使用手册</title>
+<style>
+:root{
+  --ink:#152420;
+  --ink-2:#4A5F58;
+  --ink-3:#7C8F88;
+  --line:#DCE7E2;
+  --bg:#F2F7F4;
+  --card:#FFFFFF;
+  --brand:#14574A;
+  --brand-soft:#E4F1EC;
+  --amber:#B8781A;
+  --amber-soft:#FDF3E2;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:16px;
+  line-height:1.75;
+}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 64px;}
+
+header{
+  background:linear-gradient(160deg,#14574A 0%,#1D6B5B 55%,#24796A 100%);
+  color:#fff;
+  padding:44px 20px 40px;
+  margin-bottom:28px;
+}
+header .inner{max-width:820px;margin:0 auto;}
+header h1{margin:0;font-size:28px;letter-spacing:.5px;}
+header p{margin:10px 0 0;font-size:14px;color:#C8E4DA;}
+header .meta{margin-top:18px;font-size:12px;color:#9FC7BA;}
+
+h2{
+  font-size:20px;
+  margin:36px 0 14px;
+  padding-left:12px;
+  border-left:4px solid var(--brand);
+  line-height:1.3;
+}
+h3{font-size:16px;margin:22px 0 8px;color:var(--brand);}
+p{margin:10px 0;}
+ul,ol{margin:10px 0;padding-left:22px;}
+li{margin:6px 0;}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px 22px;
+  margin:16px 0;
+}
+.card > :first-child{margin-top:0;}
+.card > :last-child{margin-bottom:0;}
+
+.steps{counter-reset:s;list-style:none;padding:0;margin:8px 0;}
+.steps > li{
+  counter-increment:s;
+  position:relative;
+  padding-left:42px;
+  margin:16px 0;
+}
+.steps > li::before{
+  content:counter(s);
+  position:absolute;
+  left:0;top:2px;
+  width:26px;height:26px;
+  border-radius:50%;
+  background:var(--brand);
+  color:#fff;
+  font-size:14px;
+  font-weight:600;
+  text-align:center;
+  line-height:26px;
+}
+.steps > li b{display:block;font-size:16px;margin-bottom:2px;}
+.steps > li span{color:var(--ink-2);font-size:15px;}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:14px 0;
+  font-size:15px;
+}
+th,td{
+  text-align:left;
+  padding:10px 12px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+th{background:var(--brand-soft);color:var(--brand);font-weight:600;}
+tr:last-child td{border-bottom:none;}
+
+.tip,.warn{
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+  font-size:15px;
+}
+.tip{background:var(--brand-soft);color:#12483E;}
+.warn{background:var(--amber-soft);color:#7A4E0D;}
+.tip b,.warn b{display:block;margin-bottom:4px;}
+
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  background:#EAF2EE;
+  border-radius:6px;
+  padding:2px 6px;
+  font-size:14px;
+  word-break:break-all;
+}
+pre{
+  background:#12211F;
+  color:#D7E8E2;
+  border-radius:12px;
+  padding:14px 16px;
+  overflow-x:auto;
+  font-size:13.5px;
+  line-height:1.6;
+}
+pre code{background:none;padding:0;color:inherit;}
+
+.url{
+  display:block;
+  background:#12211F;
+  color:#FFD27A;
+  border-radius:12px;
+  padding:14px 16px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:14px;
+  word-break:break-all;
+  margin:12px 0;
+}
+
+.q{font-weight:600;margin-top:18px;}
+.a{color:var(--ink-2);margin-top:4px;}
+
+footer{
+  margin-top:44px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  color:var(--ink-3);
+  font-size:13px;
+}
+
+@media print{
+  body{background:#fff;font-size:12pt;}
+  header{background:#14574A !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .card{break-inside:avoid;border-color:#ccc;}
+  h2{break-after:avoid;}
+  table{break-inside:auto;}
+}
+@media (max-width:520px){
+  body{font-size:15.5px;}
+  header{padding:34px 18px 30px;}
+  header h1{font-size:24px;}
+  .wrap{padding:0 14px 48px;}
+  .card{padding:16px;}
+  th,td{padding:8px 8px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <h1>手机健康助手 · 使用手册</h1>
+    <p>一款给家里老人用的用机时长守护工具：用得太久自动锁屏休息，休息结束自动恢复。</p>
+    <div class="meta">适用系统：Android 7.0 及以上 · 默认 40 分钟上限 / 15 分钟休息</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<h2>一、它能做什么</h2>
+<div class="card">
+  <ul>
+    <li><b>限制连续使用时长</b>：亮屏使用累计达到上限后，手机立即锁屏。</li>
+    <li><b>强制休息</b>：休息期间每次解锁，停留片刻后会被再次锁定，倒计时结束才彻底放开。</li>
+    <li><b>自动恢复</b>：休息结束后本轮计时清零，可以继续正常使用。</li>
+    <li><b>不影响基础功能</b>：接打电话、来电响铃、收发短信、闹钟全程不受影响。</li>
+    <li><b>紧急拨号</b>：锁屏页留有按钮，点击后可自由拨号 5 分钟。</li>
+    <li><b>家属远程管理</b>：同一个 WiFi 下，用手机浏览器就能查看状态、临时解锁、改设置。</li>
+  </ul>
+</div>
+
+<h2>二、第一次安装（约 5 分钟）</h2>
+<div class="card">
+  <ol class="steps">
+    <li>
+      <b>安装应用</b>
+      <span>把 <code>手机健康助手.apk</code> 传到老人手机上，点击安装。系统提示"未知来源"时选择允许。</span>
+    </li>
+    <li>
+      <b>激活设备管理器</b>
+      <span>打开应用，点「激活设备管理器（重要）」，在系统弹窗里点「激活」。这是自动锁屏的必要条件，只授予"强制锁屏"一项能力，不会清除任何数据。</span>
+    </li>
+    <li>
+      <b>允许悬浮窗</b>
+      <span>点「开启悬浮窗提醒」，在系统页面里打开开关。没有它，休息时只会发通知，看不到全屏倒计时。</span>
+    </li>
+    <li>
+      <b>允许通知</b>
+      <span>Android 13 及以上的手机，点「开启通知」并允许。通知栏会常驻一条守护状态，点击可打开应用。</span>
+    </li>
+    <li>
+      <b>忽略电池优化</b>
+      <span>点「忽略电池优化」，选择允许。否则系统可能在后台把守护进程清掉。</span>
+    </li>
+    <li>
+      <b>设置规则</b>
+      <span>在「守护规则」里调整单次使用上限（10–120 分钟）和休息时长（5–60 分钟）。默认是 40 分钟和 15 分钟，一般不用改。</span>
+    </li>
+  </ol>
+  <div class="tip">
+    <b>安装完成后可以隐藏图标</b>
+    应用首页底部有「隐藏桌面图标」，点一下老人就找不到它了，避免误卸载。以后要打开应用，下拉通知栏点「手机健康助手」那条通知即可。
+  </div>
+</div>
+
+<h2>三、让后台不被系统清理（重要）</h2>
+<p>国产手机默认会清理后台，必须手动放行一次，否则守护会失效。</p>
+<div class="card">
+  <table>
+    <thead>
+      <tr><th style="width:26%">品牌</th><th>需要打开的设置</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>华为 / 荣耀</td>
+        <td>设置 → 应用和服务 → 应用启动管理 → 找到「手机健康助手」→ 改为<b>手动管理</b>，把「允许自启动」「允许关联启动」「允许后台活动」全部打开。</td>
+      </tr>
+      <tr>
+        <td>小米 / Redmi</td>
+        <td>设置 → 应用设置 → 应用管理 → 手机健康助手 → 自启动（开）；省电策略选「无限制」；同时允许「后台弹出界面」。</td>
+      </tr>
+      <tr>
+        <td>OPPO / 一加 / realme</td>
+        <td>设置 → 应用管理 → 自启动管理 → 允许；电池 → 后台运行 → 允许后台活动。</td>
+      </tr>
+      <tr>
+        <td>vivo / iQOO</td>
+        <td>设置 → 应用与权限 → 自启动 → 允许；电池 → 后台耗电管理 → 允许后台高耗电。</td>
+      </tr>
+      <tr>
+        <td>三星</td>
+        <td>设置 → 应用程序 → 手机健康助手 → 电池 → 允许后台活动；电池 → 后台使用限制 → 从不休眠的应用里加入。</td>
+      </tr>
+      <tr>
+        <td>魅族</td>
+        <td>设置 → 应用管理 → 手机健康助手 → 权限管理 → 自启动（开）。</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="tip">
+    <b>加分项：锁定后台</b>
+    打开最近任务界面，下拉「手机健康助手」的卡片，出现小锁图标即表示已锁定。这样"一键清理"不会把它清掉。
+  </div>
+</div>
+
+<h2>四、老人会看到什么</h2>
+<div class="card">
+  <h3>正常使用时</h3>
+  <p>没有任何弹窗干扰，通知栏常驻一条使用时长状态。</p>
+
+  <h3>达到上限时</h3>
+  <p>手机立即锁屏。老人唤醒解锁后，会看到全屏提示：</p>
+  <ul>
+    <li>大标题「手机运行内存不足」</li>
+    <li>副标题「后台程序有点多，手机正在自动清理」</li>
+    <li>清理完成倒计时（例如 14:32）</li>
+    <li>一行提醒：休息一下：起身走走、喝口水、看看窗外</li>
+    <li>一个「紧急拨号」按钮</li>
+  </ul>
+  <p>首次解锁可以停留约 20 秒，之后每次解锁约 8 秒，随后自动锁回，直到倒计时结束。</p>
+  <div class="tip">
+    <b>界面上不会出现"防沉迷""限制""守护软件"等字样</b>
+    锁屏提示与通知都统一表述为"运行内存不足、正在自动清理"，避免老人把它当成管控软件后要求关闭。
+  </div>
+
+  <h3>需要打电话时</h3>
+  <p>点「紧急拨号」，手机进入 5 分钟自由期：拨号、通话、挂断都不受限制。通话过程中会自动续期，挂断后仍有 5 分钟缓冲。</p>
+
+  <h3>休息结束时</h3>
+  <p>手机不再锁定，本轮计时清零，重新开始累计。</p>
+</div>
+
+<h2>五、家属远程管理</h2>
+<p>手机和你的设备连在<b>同一个 WiFi</b> 时，用浏览器就能管理，不需要安装其他软件。</p>
+<div class="card">
+  <h3>第一步：找到地址</h3>
+  <p>打开应用（下拉通知栏点「手机健康助手」那条通知），在「远程控制」卡片里会看到一行地址，形如：</p>
+  <span class="url">http://192.168.10.45:8899/?key=662704</span>
+  <p>密钥已经包含在链接里，直接点开或复制到浏览器即可。</p>
+
+  <h3>第二步：在浏览器操作</h3>
+  <p>打开后可以看到状态卡片和几个按钮：</p>
+  <table>
+    <thead>
+      <tr><th style="width:34%">功能</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>查看状态</td><td>守护是否开启、本轮已用多久、今日累计、休息还剩多少、远程解锁还剩多少，每 3 秒自动刷新。</td></tr>
+      <tr><td>临时解锁</td><td>提供 15 / 30 / 60 分钟三个按钮。点击后即使超过上限也不会锁屏，到点自动恢复限制。</td></tr>
+      <tr><td>修改设置</td><td>填写新的上限和休息时长后点「保存设置」，立刻生效。</td></tr>
+      <tr><td>开启 / 暂停守护</td><td>暂停后立即解除锁定，适合老人身体不适或临时需要长时间用手机的场景。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warn">
+    <b>使用前提</b>
+    只能在同一个局域网内访问。手机换了 WiFi 后 IP 地址会变，需要重新打开应用查看新地址。密钥错误时页面会提示，无法操作。
+  </div>
+</div>
+
+<h2>六、想打开应用，但桌面没有图标</h2>
+<div class="card">
+  <p>如果已经点了「隐藏桌面图标」，有两种方式打开：</p>
+  <ol>
+    <li>下拉通知栏，点击「手机健康助手」常驻通知，直接进入应用首页。</li>
+    <li>用电脑连接手机后执行命令（需要一点技术基础）：</li>
+  </ol>
+  <pre><code>adb shell am start -n com.anxin.guard/.MainActivity</code></pre>
+  <p>需要临时把图标放回桌面时：</p>
+  <pre><code>adb shell am broadcast -a com.anxin.guard.SHOW_LAUNCHER</code></pre>
+</div>
+
+<h2>七、常见问题</h2>
+<div class="card">
+  <div class="q">Q：老人说手机被锁了，打不了电话怎么办？</div>
+  <div class="a">点锁屏页上的「紧急拨号」，5 分钟内可自由通话；也可以直接按电源键点亮屏幕接听来电，来电界面不受限制。家属还可以用远程控制临时解锁。</div>
+
+  <div class="q">Q：今天想让老人多玩一会儿？</div>
+  <div class="a">用远程控制页面点「临时解锁 60 分钟」，或者点「暂停守护」。到时间后记得重新开启。</div>
+
+  <div class="q">Q：关机重启后还会生效吗？</div>
+  <div class="a">会。应用注册了开机自启，重启后会自动恢复守护。前提是第三节的后台设置已经打开。</div>
+
+  <div class="q">Q：老人把应用卸载了怎么办？</div>
+  <div class="a">隐藏图标后普通人找不到入口，但能通过应用管理找到并卸载。如果反复出现，需要更强的管控方式（把手机设为设备所有者），代价是必须恢复出厂设置。</div>
+
+  <div class="q">Q：换了新手机怎么迁移？</div>
+  <div class="a">在新手机上重新安装 APK，按第二节的步骤重新配置一次即可。旧手机上的应用直接卸载，不会留下占用空间。</div>
+
+  <div class="q">Q：会不会影响短信、微信、闹钟？</div>
+  <div class="a">不会。锁定只作用于屏幕，后台的消息接收、闹钟提醒、来电响铃都正常。只是休息期间无法操作手机。</div>
+
+  <div class="q">Q：远程页面打不开？</div>
+  <div class="a">依次检查：两台设备是否连同一个 WiFi；地址里的 IP 是否是最新的；应用是否在运行（通知栏有常驻通知）；路由器是否开启了 AP 隔离（部分路由器会阻止设备互访）。</div>
+</div>
+
+<h2>八、默认参数与安全说明</h2>
+<div class="card">
+  <table>
+    <thead>
+      <tr><th style="width:40%">项目</th><th>默认值</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>单次连续使用上限</td><td>40 分钟（可调 10–120）</td></tr>
+      <tr><td>休息时长</td><td>15 分钟（可调 5–60）</td></tr>
+      <tr><td>计时条件</td><td>仅亮屏且非通话时累计</td></tr>
+      <tr><td>首次解锁停留</td><td>约 20 秒</td></tr>
+      <tr><td>重复解锁停留</td><td>约 8 秒</td></tr>
+      <tr><td>紧急拨号自由期</td><td>5 分钟</td></tr>
+      <tr><td>远程控制端口</td><td>8899（仅局域网）</td></tr>
+    </tbody>
+  </table>
+
+  <h3>安全边界</h3>
+  <ul>
+    <li>只申请设备管理器的「强制锁屏」能力，不具备清除数据、重置密码、限制相机等权限。</li>
+    <li>不申请无障碍、root 或设备所有者权限，不修改系统设置。</li>
+    <li>不联网上传任何使用数据；远程控制只在本机局域网内监听，所有请求都需密钥。</li>
+    <li>老人可以在系统设置里停用设备管理器或强制停止应用，这是普通应用无法阻止的边界。</li>
+  </ul>
+</div>
+
+<footer>
+  手机健康助手 · 使用手册 · 适用于当前版本<br>
+  如需彻底防止绕过，可将手机设为设备所有者，代价是必须恢复出厂设置，建议只在专用手机上使用。
+</footer>
+
+</div>
+</body>
+</html>
